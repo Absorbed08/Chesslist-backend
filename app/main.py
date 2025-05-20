@@ -9,9 +9,13 @@ app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)  # 자동 경로 
 
 app.include_router(videos.router)
 
+origins = [
+    "https://chesslist-frontend.vercel.app",  # ✅ 네 프론트 주소를 정확히 넣기
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 모든 도메인 허용 (개발 중에만 사용)
+    allow_origins=origins,  # 모든 도메인 허용 (개발 중에만 사용)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
